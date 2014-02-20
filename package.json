@@ -4,7 +4,7 @@
   "description": "Manage revisions in CSS urls (a gulp plugin)",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha -R spec"
   },
   "repository": {
     "type": "git",

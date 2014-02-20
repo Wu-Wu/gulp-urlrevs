@@ -92,4 +92,4 @@ Default: `Wave a magic wand (by urlrevs)`
 Message used at autocommit stage.
 
 [urlrevs-travis-url]: http://travis-ci.org/Wu-Wu/gulp-urlrevs
-[urlrevs-travis-image]: https://secure.travis-ci.org/Wu-Wu/gulp-urlrevs.png?branch=master
+[urlrevs-travis-image]: https://travis-ci.org/Wu-Wu/gulp-urlrevs.png?branch=master

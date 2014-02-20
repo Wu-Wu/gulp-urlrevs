@@ -1,0 +1,37 @@
+{
+  "name": "gulp-urlrevs",
+  "version": "0.0.1",
+  "description": "Manage revisions in CSS urls (a gulp plugin)",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Wu-Wu/gulp-urlrevs.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "git",
+    "css",
+    "urls",
+    "revisions"
+  ],
+  "author": "Anton Gerasimov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wu-Wu/gulp-urlrevs/issues"
+  },
+  "homepage": "https://github.com/Wu-Wu/gulp-urlrevs",
+  "devDependencies": {
+    "gulp-util": "~2.2.14",
+    "should": "~3.1.2",
+    "mocha": "~1.17.1"
+  },
+  "dependencies": {
+    "shelljs": "~0.2.6"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+}

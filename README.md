@@ -1,4 +1,4 @@
-# gulp-urlrevs [![Build status][urlrevs-travis-image]][urlrevs-travis-url]
+# gulp-urlrevs [![Build status][urlrevs-travis-image]][urlrevs-travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
 > Revision management in CSS files plugin for gulp 3
 
 ## Usage
@@ -93,3 +93,5 @@ Message used at autocommit stage.
 
 [urlrevs-travis-url]: http://travis-ci.org/Wu-Wu/gulp-urlrevs
 [urlrevs-travis-image]: https://travis-ci.org/Wu-Wu/gulp-urlrevs.png?branch=master
+[daviddm-url]: https://david-dm.org/Wu-Wu/gulp-urlrevs.png?theme=shields.io
+[daviddm-image]: https://david-dm.org/Wu-Wu/gulp-urlrevs

@@ -6,8 +6,23 @@
  * Licensed under the MIT license.
  */
 
-"use strict";
+'use strict';
 
-module.exports = function (options) {
+var _ = require('lodash'),
+    minigit = require('./minigit'),
+    gutil = require('gulp-util'),
 
+    PLUGIN_NAME = 'gulp-urlrevs';
+
+
+var raiseError = function (err) {
+    return new gutil.PluginError(PLUGIN_NAME, err);
+};
+
+var UrlRevs = function (options) {
+
+};
+
+module.exports.create = function (options) {
+    return new UrlRevs(options);
 };

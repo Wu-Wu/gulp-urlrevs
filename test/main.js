@@ -10,8 +10,10 @@ describe('gulp-urlrevs', function() {
     describe('urlrevsPlugin()', function() {
         it('should be okay', function() {
             (function() {
-                urlrevsPlugin({});
-            }).should.ok;
+                urlrevsPlugin.create({});
+            }).should.be.ok;
         });
     });
 });
+
+// console.dir( urlrevsPlugin.create({ message: 'фиксирование изменениний (urlrevs)' }) );

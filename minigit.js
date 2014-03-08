@@ -11,13 +11,10 @@
 var Shell = require('shelljs'),
     _ = require('lodash');
 
-var MiniGit = function () {
-    // console.log( 'process-env:', process.env );
+var MiniGit = function (options) {
+    options || (options = {});
 
-    // var status = this.run(
-    //     [ 'git', 'config', '-l' ]
-    // );
-    // console.log( 'git-config:', status.output.split("\n") );
+    this.debug = !!options.debug || false;
 };
 
 // run any sync command and return result
@@ -39,9 +36,10 @@ MiniGit.prototype.status = function (params, cb) {
         return cb(new Error('Unable to get repository status!'));
     }
 
-    // console.log( 'process-env:', process.env );
-    console.log( 'regex:', regex );
-    console.log( 'output:', status.output.split("\n") );
+    if (this.debug) {
+        console.log('regex:', regex);
+        console.log('output:', status.output.split("\n"));
+    }
 
     // select certain untracked items only
     selected = _.filter(status.output.split("\n"), function (filename) {

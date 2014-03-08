@@ -29,8 +29,8 @@ var repoInit = function () {
 
 var repoEnv = function() {
     // console.log( sh.ls('-R', process.env['GIT_WORK_TREE']) );
-    console.log('GIT_WORK_TREE:', process.env['GIT_WORK_TREE']);
-    console.log('GIT_DIR:', process.env['GIT_DIR']);
+    // console.log('GIT_WORK_TREE:', process.env['GIT_WORK_TREE']);
+    // console.log('GIT_DIR:', process.env['GIT_DIR']);
 };
 
 var repoClean = function() {
@@ -49,8 +49,8 @@ var repoAdd = function(src, dst, opts) {
     var from = mkPath(src.split("/")),
         to = mkPath(dst.split("/"));
 
-    console.log( 'from: ' +  from);
-    console.log( 'to  : ' +  to );
+    // console.log( 'from: ' +  from);
+    // console.log( 'to  : ' +  to );
 
     sh.mkdir('-p', to);
     sh.cp('-f', from, to);

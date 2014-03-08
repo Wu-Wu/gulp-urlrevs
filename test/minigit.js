@@ -23,6 +23,8 @@ var repoInit = function () {
     sh.cp('-Rf', mkPath('fixtures/repo/*'.split('/')), process.env['GIT_WORK_TREE']);
 
     sh.exec('git init', { silent: true });
+    sh.exec('git config user.email qa@gulp-urlrevs.com', { silent: true });
+    sh.exec('git config user.name QA', { silent: true });
     sh.exec('git add -A', { silent: true });
     sh.exec('git commit -am "initial commit"', { silent: false });
 };

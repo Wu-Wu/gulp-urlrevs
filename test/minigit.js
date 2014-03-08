@@ -66,7 +66,7 @@ describe('minigit', function() {
     };
 
     before(function(){
-        console.log( sh.exec('git --version', { silent: true }).output.split("\n")[0] );
+        // console.log( sh.exec('git --version', { silent: true }).output.split("\n")[0] );
     });
 
     describe('status()', function() {

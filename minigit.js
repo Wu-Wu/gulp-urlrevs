@@ -42,8 +42,7 @@ MiniGit.prototype.status = function (params, cb) {
 
     // select certain untracked items only
     selected = _.filter(status.output.split("\n"), function (filename) {
-        // only untracked and images
-        return /^\?\?/.test(filename) && regex.test(filename);
+        return regex.test(filename);
     });
 
     return cb(null, selected);
@@ -119,4 +118,4 @@ MiniGit.prototype.commit = function(params, cb) {
     });
 };
 
-module.exports = new MiniGit({ debug: true });
+module.exports = new MiniGit({ debug: false });

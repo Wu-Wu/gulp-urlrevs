@@ -26,7 +26,7 @@ var repoInit = function () {
     sh.exec('git config user.email qa@gulp-urlrevs.com', { silent: true });
     sh.exec('git config user.name QA', { silent: true });
     sh.exec('git add -A', { silent: true });
-    sh.exec('git commit -am "initial commit"', { silent: false });
+    sh.exec('git commit -am "initial commit"', { silent: true });
 };
 
 var repoEnv = function() {
@@ -66,10 +66,6 @@ describe('minigit', function() {
         path: 'root/i',
         abbrev: 6
     };
-
-    before(function(){
-        // console.log( sh.exec('git --version', { silent: true }).output.split("\n")[0] );
-    });
 
     describe('status()', function() {
         beforeEach(function(){
@@ -112,8 +108,6 @@ describe('minigit', function() {
             repoAdd("fixtures/bar.png", "repo/" + options.path);
 
             minigit.status(options, function(err, changed) {
-                // console.dir(changed);
-
                 should.not.exist(err);
                 changed.length.should.be.eql(1);
             });
@@ -142,8 +136,6 @@ describe('minigit', function() {
         });
 
         it('should return a tree object on valid repository', function() {
-            sh.exec('git log -1', { silent: false });
-
             minigit.lsTree(options, function(err, tree) {
                 should.not.exist(err);
                 tree.should.be.an.Object;

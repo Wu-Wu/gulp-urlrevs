@@ -67,16 +67,15 @@ describe('minigit', function() {
         abbrev: 6
     };
 
+    beforeEach(function(){
+        repoInit();
+    });
+
+    afterEach(function(){
+        repoClean();
+    });
+
     describe('status()', function() {
-        beforeEach(function(){
-            repoInit();
-            repoEnv();
-        });
-
-        afterEach(function(){
-            repoClean();
-        });
-
         it('should raise exception on unknown repository', function() {
             // setup bogus repo
             process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');
@@ -116,14 +115,6 @@ describe('minigit', function() {
     });
 
     describe('lsTree()', function() {
-        beforeEach(function(){
-            repoInit();
-        });
-
-        afterEach(function(){
-            repoClean();
-        });
-
         it('should raise exception on unknown repository', function() {
             // setup bogus repo
             process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');

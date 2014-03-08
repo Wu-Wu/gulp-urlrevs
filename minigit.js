@@ -12,12 +12,12 @@ var Shell = require('shelljs'),
     _ = require('lodash');
 
 var MiniGit = function () {
-    console.log( 'process-env:', process.env );
+    // console.log( 'process-env:', process.env );
 
-    var status = this.run(
-        [ 'git', 'config', '-l' ]
-    );
-    console.log( 'git-config:', status.output.split("\n") );
+    // var status = this.run(
+    //     [ 'git', 'config', '-l' ]
+    // );
+    // console.log( 'git-config:', status.output.split("\n") );
 };
 
 // run any sync command and return result
@@ -39,7 +39,7 @@ MiniGit.prototype.status = function (params, cb) {
         return cb(new Error('Unable to get repository status!'));
     }
 
-    console.log( 'process-env:', process.env );
+    // console.log( 'process-env:', process.env );
     console.log( 'regex:', regex );
     console.log( 'output:', status.output.split("\n") );
 

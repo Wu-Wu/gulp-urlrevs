@@ -33,6 +33,9 @@ MiniGit.prototype.status = function (params, cb) {
         return cb(new Error('Unable to get repository status!'));
     }
 
+    console.log( 'regex:', regex );
+    console.log( 'output:', status.output.split("\n") );
+
     // select certain untracked items only
     selected = _.filter(status.output.split("\n"), function (filename) {
         return regex.test(filename);

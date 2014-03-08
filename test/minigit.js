@@ -27,8 +27,10 @@ var repoInit = function () {
     sh.exec('git commit -am "initial commit"', { silent: true });
 };
 
-var repoLs = function() {
+var repoEnv = function() {
     // console.log( sh.ls('-R', process.env['GIT_WORK_TREE']) );
+    console.log('GIT_WORK_TREE:', process.env['GIT_WORK_TREE']);
+    console.log('GIT_DIR:', process.env['GIT_DIR']);
 };
 
 var repoClean = function() {
@@ -63,10 +65,14 @@ describe('minigit', function() {
         abbrev: 6
     };
 
+    before(function(){
+        console.log( sh.exec('git --version', { silent: true }).output.split("\n")[0] );
+    });
+
     describe('status()', function() {
         beforeEach(function(){
             repoInit();
-            repoLs();
+            repoEnv();
         });
 
         afterEach(function(){

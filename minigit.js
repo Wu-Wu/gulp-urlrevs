@@ -114,6 +114,10 @@ MiniGit.prototype.commit = function(params, cb) {
             [ 'git', 'commit', '-m "' + params.message + '"' ]
         );
 
+        if (self.debug) {
+            console.log('commit output:', status.output.split("\n"));
+        }
+
         if (status.code !== 0) {
             return cb(new Error('Unable to commit changes!'))
         }

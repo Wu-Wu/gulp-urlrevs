@@ -64,7 +64,8 @@ describe('minigit', function() {
         filter: '\\.(png|jpg)',
         branch: 'HEAD',
         path: 'root/i',
-        abbrev: 6
+        abbrev: 6,
+        message: 'commit changes (urlrevs)'
     };
 
     beforeEach(function(){
@@ -151,6 +152,39 @@ describe('minigit', function() {
             repoAdd("fixtures/bar.png", "repo/" + options.path);
 
             minigit.add(options, function(err) {
+                should.not.exist(err);
+            });
+        });
+    });
+
+    describe('commit()', function() {
+        var originalAdd = minigit.add;
+
+        it('should raise exception on unknown repository', function() {
+
+            repoAdd("fixtures/bar.png", "repo/" + options.path);
+            minigit.add(options, function(){});
+
+            // spoof MiniGit.add()
+            minigit.add = function (params, cb) { return cb(null); };
+
+            // setup bogus repo
+            process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');
+
+            minigit.commit(options, function(err) {
+                should.exist(err);
+                err.should.be.an.Error;
+                err.message.should.match(/^Unable to commit changes!/);
+            });
+        });
+
+        it('should be done w/o error on valid repository', function() {
+            // restore MiniGit.add()
+            minigit.add = originalAdd;
+
+            repoAdd("fixtures/bar.png", "repo/" + options.path);
+
+            minigit.commit(options, function(err) {
                 should.not.exist(err);
             });
         });

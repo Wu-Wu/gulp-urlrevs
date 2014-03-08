@@ -24,7 +24,7 @@ var repoInit = function () {
 
     sh.exec('git init', { silent: true });
     sh.exec('git add -A', { silent: true });
-    sh.exec('git commit -am "initial commit"', { silent: true });
+    sh.exec('git commit -am "initial commit"', { silent: false });
 };
 
 var repoEnv = function() {
@@ -140,6 +140,8 @@ describe('minigit', function() {
         });
 
         it('should return a tree object on valid repository', function() {
+            sh.exec('git log -1', { silent: false });
+
             minigit.lsTree(options, function(err, tree) {
                 should.not.exist(err);
                 tree.should.be.an.Object;

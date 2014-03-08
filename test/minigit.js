@@ -14,8 +14,8 @@ var repoInit = function () {
     process.env['GIT_WORK_TREE'] = path.resolve(__dirname, 'repo');
     process.env['GIT_DIR'] = path.resolve(process.env['GIT_WORK_TREE'], '.git');
 
-    // console.log('GIT_WORK_TREE:', process.env['GIT_WORK_TREE']);
-    // console.log('GIT_DIR:', process.env['GIT_DIR']);
+    console.log('GIT_WORK_TREE:', process.env['GIT_WORK_TREE']);
+    console.log('GIT_DIR:', process.env['GIT_DIR']);
 
     sh.rm('-rf', process.env['GIT_WORK_TREE']);
     sh.mkdir('-p', process.env['GIT_WORK_TREE']);
@@ -25,6 +25,10 @@ var repoInit = function () {
     sh.exec('git init', { silent: true });
     sh.exec('git add -A', { silent: true });
     sh.exec('git commit -am "initial commit"', { silent: true });
+};
+
+var repoLs = function() {
+    console.dir( sh.ls('-R', process.env['GIT_WORK_TREE']) );
 };
 
 var repoClean = function() {
@@ -43,8 +47,8 @@ var repoAdd = function(src, dst, opts) {
     var from = mkPath(src.split("/")),
         to = mkPath(dst.split("/"));
 
-    // console.log( 'from: ' +  from);
-    // console.log( 'to  : ' +  to );
+    console.log( 'from: ' +  from);
+    console.log( 'to  : ' +  to );
 
     sh.mkdir('-p', to);
     sh.cp('-f', from, to);
@@ -62,6 +66,7 @@ describe('minigit', function() {
     describe('status()', function() {
         beforeEach(function(){
             repoInit();
+            repoLs();
         });
 
         afterEach(function(){

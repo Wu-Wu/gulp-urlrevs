@@ -3,7 +3,6 @@
 //
 var minigit = require('../minigit'),
     should = require('should'),
-    gutil = require('gulp-util'),
     sh = require('shelljs'),
     path = require('path'),
     _ = require('lodash');
@@ -47,7 +46,7 @@ var repoAdd = function(src, dst, opts) {
 };
 
 describe('minigit', function() {
-    // -
+    // various options
     var options = {
         filter: '\\.(png|jpg)',
         branch: 'HEAD',
@@ -100,7 +99,6 @@ describe('minigit', function() {
                 changed.length.should.be.eql(1);
             });
         });
-
     });
 
     describe('lsTree()', function() {
@@ -154,7 +152,7 @@ describe('minigit', function() {
             minigit.add(options, function(){});
 
             // spoof MiniGit.add()
-            minigit.add = function (params, cb) { return cb(null); };
+            minigit.add = function(params, cb) { return cb(null); };
 
             // setup bogus repo
             process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');

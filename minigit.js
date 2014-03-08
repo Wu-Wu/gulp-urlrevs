@@ -29,7 +29,7 @@ MiniGit.prototype.status = function (params, cb) {
         [ 'git', 'status', '--porcelain', '--untracked-files=all' ]
     );
 
-    if (!status.code) {
+    if (status.code !== 0) {
         return cb(new Error('Unable to get repository status!'));
     }
 
@@ -51,7 +51,7 @@ MiniGit.prototype.lsTree = function(params, cb) {
     );
 
     // shit happened?
-    if (!status.code) {
+    if (status.code !== 0) {
         return cb(new Error('Unable to get repository tree!'), {});
     }
 
@@ -75,7 +75,7 @@ MiniGit.prototype.add = function(params, cb) {
     );
 
     // shit happened?
-    if (!status.code) {
+    if (status.code !== 0) {
         return cb(new Error('Unable to add files to repository!'));
     }
 
@@ -99,7 +99,7 @@ MiniGit.prototype.commit = function(params, cb) {
             [ 'git', 'commit', '-m "' + params.message + '"' ]
         );
 
-        if (!status.code) {
+        if (status.code !== 0) {
             return cb(new Error('Unable to commit changes!'))
         }
 

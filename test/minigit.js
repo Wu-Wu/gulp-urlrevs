@@ -22,9 +22,9 @@ var repoInit = function () {
 
     sh.cp('-Rf', mkPath('fixtures/repo/*'.split('/')), process.env['GIT_WORK_TREE']);
 
-    sh.exec('git init', { silent: false });
-    sh.exec('git add -A', { silent: false });
-    sh.exec('git commit -am "initial commit"', { silent: false });
+    sh.exec('git init', { silent: true });
+    sh.exec('git add -A', { silent: true });
+    sh.exec('git commit -am "initial commit"', { silent: true });
 };
 
 var repoEnv = function() {

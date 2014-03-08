@@ -45,7 +45,8 @@ MiniGit.prototype.status = function (params, cb) {
 
     // select certain untracked items only
     selected = _.filter(status.output.split("\n"), function (filename) {
-        return regex.test(filename);
+        // only untracked and images
+        return /^\?\?/.test(filename) && regex.test(filename);
     });
 
     return cb(null, selected);

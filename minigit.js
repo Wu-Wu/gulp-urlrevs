@@ -32,13 +32,12 @@ MiniGit.prototype.status = function (params, cb) {
         [ 'git', 'status', '--porcelain', '--untracked-files=all' ]
     );
 
-    if (status.code !== 0) {
-        return cb(new Error('Unable to get repository status!'));
+    if (this.debug) {
+        console.log('status output:', status.output.split("\n"));
     }
 
-    if (this.debug) {
-        console.log('regex:', regex);
-        console.log('output:', status.output.split("\n"));
+    if (status.code !== 0) {
+        return cb(new Error('Unable to get repository status!'));
     }
 
     // select certain untracked items only
@@ -58,6 +57,10 @@ MiniGit.prototype.lsTree = function(params, cb) {
     status = this.run(
         [ 'git', 'ls-tree', '-r', '--abbrev=12', params.branch, params.path ]
     );
+
+    if (this.debug) {
+        console.log('ls-tree output:', status.output.split("\n"));
+    }
 
     // shit happened?
     if (status.code !== 0) {
@@ -116,4 +119,4 @@ MiniGit.prototype.commit = function(params, cb) {
     });
 };
 
-module.exports = new MiniGit();
+module.exports = new MiniGit({ debug: true });

@@ -85,6 +85,10 @@ MiniGit.prototype.add = function(params, cb) {
         [ 'git', 'add', params.path ]
     );
 
+    if (this.debug) {
+        console.log('add output:', status.output.split("\n"));
+    }
+
     // shit happened?
     if (status.code !== 0) {
         return cb(new Error('Unable to add files to repository!'));

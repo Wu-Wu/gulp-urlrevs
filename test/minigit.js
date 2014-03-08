@@ -134,4 +134,25 @@ describe('minigit', function() {
             });
         });
     });
+
+    describe('add()', function() {
+        it('should raise exception on unknown repository', function() {
+            // setup bogus repo
+            process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');
+
+            minigit.add(options, function(err) {
+                should.exist(err);
+                err.should.be.an.Error;
+                err.message.should.match(/^Unable to add files to repository!/);
+            });
+        });
+
+        it('should be done w/o error on valid repository', function() {
+            repoAdd("fixtures/bar.png", "repo/" + options.path);
+
+            minigit.add(options, function(err) {
+                should.not.exist(err);
+            });
+        });
+    });
 });

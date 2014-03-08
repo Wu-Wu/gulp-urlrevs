@@ -86,7 +86,7 @@ describe('minigit', function() {
             minigit.status(options, function(err) {
                 should.exist(err);
                 err.should.be.an.Error;
-                err.should.match(/Unable to get repository status/);
+                err.message.should.match(/^Unable to get repository status!/);
             });
         });
 
@@ -120,10 +120,31 @@ describe('minigit', function() {
     });
 
     describe('lsTree()', function() {
+        beforeEach(function(){
+            repoInit();
+        });
+
+        afterEach(function(){
+            repoClean();
+        });
+
         it('should raise exception on unknown repository', function() {
+            // setup bogus repo
+            process.env['GIT_DIR'] = path.resolve(__dirname, 'bogus');
+
+            minigit.lsTree(options, function(err) {
+                should.exist(err);
+                err.should.be.an.Error;
+                err.message.should.match(/^Unable to get repository tree!/);
+            });
         });
 
         it('should return a tree object on valid repository', function() {
+            minigit.lsTree(options, function(err, tree) {
+                should.not.exist(err);
+                tree.should.be.an.Object;
+                tree.should.have.keys([ 'root/i/bar.jpg', 'root/i/foo.png' ]);
+            });
         });
     });
 });
